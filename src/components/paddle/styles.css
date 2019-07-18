@@ -1,0 +1,21 @@
+.left-column {
+    width: 45%;
+    text-align: left;
+    padding: 1%;
+    border: 2px solid black;
+    position: relative;
+    display: inline-block;
+    margin: 1%;
+}
+
+.paddle-label {
+    width: 110px;
+    display: inline-block;
+    margin: 5px;
+}
+
+.score-div {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
