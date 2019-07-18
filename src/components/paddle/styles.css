@@ -1,16 +1,24 @@
-.left-column {
+.wrapper {
     width: 45%;
     text-align: left;
     padding: 1%;
     border: 2px solid black;
     position: relative;
-    display: inline-block;
     margin: 1%;
+    display: flex;
+}
+
+.data-view {
+    max-width: 33%;
+    display: inline-block;
+}
+
+select {
+    width: 75%;
 }
 
 .paddle-label {
     width: 110px;
-    display: inline-block;
     margin: 5px;
 }
 
@@ -18,4 +26,8 @@
     position: absolute;
     top: 15px;
     right: 15px;
+}
+
+li {
+    list-style-type: none;
 }
