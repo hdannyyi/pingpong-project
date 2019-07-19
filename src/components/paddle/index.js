@@ -35,6 +35,41 @@ class Paddle extends Component {
         this.setState(dataToSet);
     };
 
+    calculateTotalWeight = () => {
+        const { selectedBlade } = this.state;
+        let totalWeight = 3 + Number(selectedBlade.b_weight);
+
+        return totalWeight;
+    };
+
+    calculateTotalSpeed = () => {
+        const {
+            selectedBlade,
+            selectedForehand,
+            selectedBackhand
+        } = this.state;
+        let totalSpeed =
+            Number(selectedBlade.b_speed) +
+            Number(selectedForehand.r_speed) +
+            Number(selectedBackhand.r_speed);
+
+        return totalSpeed;
+    };
+
+    calculateTotalControl = () => {
+        const {
+            selectedBlade,
+            selectedBackhand,
+            selectedForehand
+        } = this.state;
+        let totalControl =
+            Number(selectedBlade.b_control) +
+            Number(selectedForehand.r_control) +
+            Number(selectedBackhand.r_control);
+
+        return totalControl;
+    };
+
     render() {
         const {
             selectedBackhand,
@@ -95,8 +130,11 @@ class Paddle extends Component {
                             <li>Speed: {selectedBackhand.r_speed}</li>
                             <li>Control: {selectedBackhand.r_control}</li>
                         </div>
-                        <div>
-                            <li />
+                        <div className="data-view">
+                            <li>Total Ratings</li>
+                            <li>Weight: {this.calculateTotalWeight()}g</li>
+                            <li>Speed: {this.calculateTotalSpeed()}</li>
+                            <li>Control: {this.calculateTotalControl()}</li>
                         </div>
                     </form>
                     <div className="score-div" />

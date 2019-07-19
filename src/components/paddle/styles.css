@@ -9,12 +9,12 @@
 }
 
 .data-view {
-    max-width: 33%;
+    width: 25%;
     display: inline-block;
 }
 
 select {
-    width: 75%;
+    width: 90%;
 }
 
 .paddle-label {
