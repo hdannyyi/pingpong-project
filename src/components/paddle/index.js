@@ -40,7 +40,7 @@ class Paddle extends Component {
 
     calculateTotalWeight = () => {
         const { selectedBlade } = this.state;
-        let totalWeight = this.isItNa(3 + Number(selectedBlade.b_weight));
+        let totalWeight = 3 + this.isItNa(Number(selectedBlade.b_weight));
 
         return totalWeight;
     };
