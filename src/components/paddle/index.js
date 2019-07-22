@@ -21,8 +21,7 @@ class Paddle extends Component {
     };
 
     handleInput = (e, type) => {
-        // console.log(e.target.value);
-        console.log(this.props.rubbers.default);
+        // console.log(this.props.rubbers.default);
         const dataToSet = {};
         type === "Blade"
             ? (dataToSet[`selected${type}`] = this.props.blades.default.find(
@@ -31,13 +30,17 @@ class Paddle extends Component {
             : (dataToSet[`selected${type}`] = this.props.rubbers.default.find(
                   x => x.r_name === e.target.value
               ));
-        console.log("data to set: ", dataToSet[`selected${type}`]);
+        // console.log("data to set: ", dataToSet[`selected${type}`]);
         this.setState(dataToSet);
+    };
+
+    isItNa = value => {
+        return isNaN(value) ? 0 : value;
     };
 
     calculateTotalWeight = () => {
         const { selectedBlade } = this.state;
-        let totalWeight = 3 + Number(selectedBlade.b_weight);
+        let totalWeight = this.isItNa(3 + Number(selectedBlade.b_weight));
 
         return totalWeight;
     };
@@ -49,9 +52,9 @@ class Paddle extends Component {
             selectedBackhand
         } = this.state;
         let totalSpeed =
-            Number(selectedBlade.b_speed) +
-            Number(selectedForehand.r_speed) +
-            Number(selectedBackhand.r_speed);
+            this.isItNa(Number(selectedBlade.b_speed)) +
+            this.isItNa(Number(selectedForehand.r_speed)) +
+            this.isItNa(Number(selectedBackhand.r_speed));
 
         return totalSpeed;
     };
@@ -63,9 +66,9 @@ class Paddle extends Component {
             selectedForehand
         } = this.state;
         let totalControl =
-            Number(selectedBlade.b_control) +
-            Number(selectedForehand.r_control) +
-            Number(selectedBackhand.r_control);
+            this.isItNa(Number(selectedBlade.b_control)) +
+            this.isItNa(Number(selectedForehand.r_control)) +
+            this.isItNa(Number(selectedBackhand.r_control));
 
         return totalControl;
     };
@@ -82,7 +85,7 @@ class Paddle extends Component {
                     <form>
                         <div className="data-view" id="forehand">
                             <div className="paddle-label">
-                                <label>FH</label>
+                                <label>Forehand</label>
                             </div>
 
                             <select
@@ -115,7 +118,7 @@ class Paddle extends Component {
                         </div>
                         <div className="data-view" id="backhand">
                             <div className="paddle-label">
-                                <label>BH</label>
+                                <label>Backhand</label>
                             </div>
                             <select
                                 type="text"
