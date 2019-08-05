@@ -7,6 +7,16 @@ class Dashboard extends Component {
         paddles: []
     };
 
+    navBar = () => {
+        return (
+            <ul class="nav">
+                <li>
+                    <Link to="/compare">Compare</Link>
+                </li>
+            </ul>
+        );
+    };
+
     renderDashboardList() {
         let paddleList = JSON.parse(localStorage.getItem("my-paddles")) || [];
         return paddleList.map((paddle, i) => {
@@ -62,7 +72,12 @@ class Dashboard extends Component {
 
     render() {
         return (
-            <div className="paddle-wrapper">{this.renderDashboardList()}</div>
+            <>
+                <nav>{this.navBar()}</nav>
+                <div className="paddle-wrapper">
+                    {this.renderDashboardList()}
+                </div>
+            </>
         );
     }
 }

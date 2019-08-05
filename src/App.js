@@ -11,13 +11,24 @@ class ComparePaddles extends Component {
         paddle: {}
     };
 
+    componentWillMount() {
+        if (this.props.location.state && this.props.location.state.paddle) {
+            console.log("location: ", this.props.location.state);
+            console.log("new paddle: ", this.props.location.state.paddle);
+            // this.setState(this.props.location.state.paddle);
+            this.setState({ paddle: this.props.location.state.paddle });
+
+            console.log(this.state.paddle);
+        }
+    }
+
     render() {
         return (
             <>
                 <Paddle
                     blades={BladesData}
                     rubbers={RubbersData}
-                    paddleToCompare={this.props.location.state.paddle}
+                    paddleToCompare={this.state.paddle}
                 />
                 <Paddle blades={BladesData} rubbers={RubbersData} />
             </>
