@@ -5,8 +5,14 @@ class Paddle extends Component {
     state = {
         selectedForehand: this.props.rubbers.default[0] || "",
         selectedBlade: this.props.blades.default[0] || "",
-        selectedBackhand: this.props.rubbers.default[0] || ""
+        selectedBackhand: this.props.rubbers.default[0] || "",
+        paddleToCompare: this.props.paddleToCompare
     };
+
+    componentDidMount() {
+        console.log("paddle:", this.state.paddleToCompare);
+        this.setState(this.state.paddleToCompare);
+    }
 
     renderBlades = () => {
         return this.props.blades.default.map((blade, i) => {
@@ -21,7 +27,6 @@ class Paddle extends Component {
     };
 
     handleInput = (e, type) => {
-        // console.log(this.props.rubbers.default);
         const dataToSet = {};
         type === "Blade"
             ? (dataToSet[`selected${type}`] = this.props.blades.default.find(
@@ -30,7 +35,6 @@ class Paddle extends Component {
             : (dataToSet[`selected${type}`] = this.props.rubbers.default.find(
                   x => x.r_name === e.target.value
               ));
-        // console.log("data to set: ", dataToSet[`selected${type}`]);
         this.setState(dataToSet);
     };
 
@@ -73,6 +77,18 @@ class Paddle extends Component {
         return totalControl;
     };
 
+    savePaddle = () => {
+        let newPaddle = {
+            selectedBlade: this.state.selectedBlade,
+            selectedForehand: this.state.selectedForehand,
+            selectedBackhand: this.state.selectedBackhand
+        };
+        let paddles = JSON.parse(localStorage.getItem("my-paddles")) || [];
+        console.log("previous: ", paddles);
+        paddles.push(newPaddle);
+        localStorage.setItem("my-paddles", JSON.stringify(paddles));
+    };
+
     render() {
         const {
             selectedBackhand,
@@ -96,6 +112,9 @@ class Paddle extends Component {
                             >
                                 {this.renderRubbers()}
                             </select>
+                            <li>
+                                <img src={selectedForehand.thumbnail} />
+                            </li>
                             <li>Weight: 1.5g</li>
                             <li>Speed: {selectedForehand.r_speed}</li>
                             <li>Control: {selectedForehand.r_control}</li>
@@ -112,6 +131,9 @@ class Paddle extends Component {
                             >
                                 {this.renderBlades()}
                             </select>
+                            <li>
+                                <img src={selectedBlade.b_image} />
+                            </li>
                             <li>Weight: {selectedBlade.b_weight}g</li>
                             <li>Speed: {selectedBlade.b_speed}</li>
                             <li>Control: {selectedBlade.b_control}</li>
@@ -129,6 +151,9 @@ class Paddle extends Component {
                             >
                                 {this.renderRubbers()}
                             </select>
+                            <li>
+                                <img src={selectedBackhand.thumbnail} />
+                            </li>
                             <li>Weight: 1.5g</li>
                             <li>Speed: {selectedBackhand.r_speed}</li>
                             <li>Control: {selectedBackhand.r_control}</li>
@@ -140,6 +165,7 @@ class Paddle extends Component {
                             <li>Control: {this.calculateTotalControl()}</li>
                         </div>
                     </form>
+                    <button onClick={this.savePaddle}>SAVE</button>
                     <div className="score-div" />
                 </div>
             </>

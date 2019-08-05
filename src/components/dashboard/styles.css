@@ -1,4 +1,12 @@
-.wrapper {
+.paddle-wrapper {
+    width: 100%;
+    text-align: left;
+    padding: 1%;
+    position: relative;
+    margin: 1%;
+}
+
+.saved-paddle {
     width: 45%;
     text-align: left;
     padding: 1%;
