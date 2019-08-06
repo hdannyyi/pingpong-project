@@ -4,6 +4,7 @@ import * as BladesData from "./data/blade.json";
 import * as RubbersData from "./data/rubber.json";
 import Paddle from "./components/paddle";
 import Dashboard from "./components/dashboard";
+import HomeNav from "./components/homeNavBar";
 import "./App.css";
 
 class ComparePaddles extends Component {
@@ -25,6 +26,7 @@ class ComparePaddles extends Component {
     render() {
         return (
             <>
+                <HomeNav />
                 <Paddle
                     blades={BladesData}
                     rubbers={RubbersData}

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import "./styles.css";
 
 class Paddle extends Component {
@@ -90,16 +89,6 @@ class Paddle extends Component {
         localStorage.setItem("my-paddles", JSON.stringify(paddles));
     };
 
-    navBar = () => {
-        return (
-            <ul class="nav">
-                <li>
-                    <Link to="/">Home</Link>
-                </li>
-            </ul>
-        );
-    };
-
     render() {
         const {
             selectedBackhand,
@@ -108,7 +97,6 @@ class Paddle extends Component {
         } = this.state;
         return (
             <>
-                <nav>{this.navBar()}</nav>
                 <div className="wrapper">
                     <form>
                         <div className="data-view" id="forehand">
